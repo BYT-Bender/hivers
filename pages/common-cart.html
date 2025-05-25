@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Common Cart - HIVE</title>
+  <meta name="description" content="Create and manage shared shopping lists with your roommates">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/common-cart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Required Lovable script tag -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</head>
+<body class="dark-mode">
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <a href="../index.html" class="logo">HIVE</a>
+        <div class="nav-links">
+          <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+          <a href="roommate-finder.html" class="nav-link"><i class="fas fa-user-friends"></i> Roommate Finder</a>
+          <a href="common-cart.html" class="nav-link active"><i class="fas fa-shopping-cart"></i> Common Cart</a>
+          <a href="item-renting.html" class="nav-link"><i class="fas fa-box"></i> Item Renting</a>
+          <a href="auto-sharing.html" class="nav-link"><i class="fas fa-car"></i> Auto Sharing</a>
+          <a href="game-partner.html" class="nav-link"><i class="fas fa-gamepad"></i> Game Partner</a>
+        </div>
+        <button id="theme-toggle" class="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="page-header">
+        <h1>Common Cart</h1>
+        <p>Create and manage shared shopping lists with your roommates</p>
+      </section>
+
+      <div class="content-grid">
+        <div class="sidebar">
+          <div class="card add-item-card">
+            <h2>Add New Item</h2>
+            <form id="add-item-form">
+              <div class="form-group">
+                <label for="item-name">Item Name</label>
+                <input type="text" id="item-name" placeholder="Enter item name" required>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="item-quantity">Quantity</label>
+                  <input type="number" id="item-quantity" min="1" value="1">
+                </div>
+                
+                <div class="form-group">
+                  <label for="item-price">Price ($)</label>
+                  <input type="number" id="item-price" min="0" step="0.01" value="0">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="item-category">Category</label>
+                <select id="item-category">
+                  <option value="grocery">Grocery</option>
+                  <option value="household">Household</option>
+                  <option value="personal">Personal Care</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="item-added-by">Added By</label>
+                <input type="text" id="item-added-by" placeholder="Your name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="item-notes">Notes (Optional)</label>
+                <textarea id="item-notes" placeholder="Any specific details..."></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+          </div>
+          
+          <div class="card summary-card">
+            <h2>Shopping Summary</h2>
+            
+            <div class="summary-item">
+              <span>Total Items:</span>
+              <span id="total-items">0</span>
+            </div>
+            
+            <div class="summary-item">
+              <span>Items Purchased:</span>
+              <span id="purchased-items">0</span>
+            </div>
+            
+            <div class="summary-item">
+              <span>Items Remaining:</span>
+              <span id="remaining-items">0</span>
+            </div>
+            
+            <div class="summary-item total">
+              <span>Estimated Total:</span>
+              <span id="total-price">$0.00</span>
+            </div>
+            
+            <div class="summary-actions">
+              <button id="clear-purchased" class="btn btn-secondary">Clear Purchased Items</button>
+              <button id="reset-cart" class="btn btn-outline">Reset All</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="main-content">
+          <div class="cart-header">
+            <h2>Shopping List</h2>
+            
+            <div class="cart-filters">
+              <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pending">To Buy</button>
+                <button class="filter-btn" data-filter="completed">Purchased</button>
+              </div>
+              
+              <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-items" placeholder="Search items...">
+              </div>
+            </div>
+          </div>
+          
+          <div id="cart-items-container" class="cart-items">
+            <!-- Cart items will be displayed here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 HIVE Community Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/common-cart.js"></script>
+</body>
+</html>

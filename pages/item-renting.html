@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Renting - HIVE</title>
+  <meta name="description" content="Borrow and lend items within your community">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/item-renting.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Required Lovable script tag -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</head>
+<body class="dark-mode">
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <a href="../index.html" class="logo">HIVE</a>
+        <div class="nav-links" id="navLinks">
+          <a href="../index.html" class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</a>
+          <a href="roommate-finder.html" class="nav-link" data-page="roommate-finder"><i class="fas fa-user-friends"></i> Roommate Finder</a>
+          <a href="common-cart.html" class="nav-link" data-page="common-cart"><i class="fas fa-shopping-cart"></i> Common Cart</a>
+          <a href="item-renting.html" class="nav-link active" data-page="item-renting"><i class="fas fa-box"></i> Item Renting</a>
+          <a href="auto-sharing.html" class="nav-link" data-page="auto-sharing"><i class="fas fa-car"></i> Auto Sharing</a>
+          <a href="game-partner.html" class="nav-link" data-page="game-partner"><i class="fas fa-gamepad"></i> Game Partner</a>
+        </div>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="page-header">
+        <h1>Item Renting</h1>
+        <p>Borrow and lend items within your community</p>
+      </section>
+
+      <div class="renting-container">
+        <div class="sidebar">
+          <div class="search-add-container">
+            <div class="search-container">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" id="search-input" class="input search-input" placeholder="Search items...">
+            </div>
+            
+            <button id="add-item-btn" class="btn btn-primary">Add New Item</button>
+          </div>
+          
+          <div class="card" id="add-item-form" style="display: none;">
+            <div class="card-header">
+              <h2 class="card-title">Add New Item</h2>
+              <p class="card-description">Share an item with your community</p>
+            </div>
+            <div class="card-content">
+              <form id="item-form">
+                <div class="form-group">
+                  <label for="item-name">Item Name</label>
+                  <input type="text" id="item-name" class="input" placeholder="Electric Drill, Mountain Bike, etc." required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="owner-name">Your Name</label>
+                  <input type="text" id="owner-name" class="input" placeholder="Your name" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="category">Category</label>
+                  <select id="category" class="select" required>
+                    <option value="" disabled selected>Select category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Tools">Tools</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Outdoors">Outdoors</option>
+                    <option value="Kitchen">Kitchen</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Books">Books</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="condition">Condition</label>
+                    <select id="condition" class="select" required>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Very Good">Very Good</option>
+                      <option value="Good" selected>Good</option>
+                      <option value="Fair">Fair</option>
+                      <option value="Poor">Poor</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <select id="duration" class="select" required>
+                      <option value="Hour">Hour</option>
+                      <option value="Day" selected>Day</option>
+                      <option value="Weekend">Weekend</option>
+                      <option value="Week">Week</option>
+                      <option value="Month">Month</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="rent-amount">Rent Amount ($)</label>
+                  <input type="number" id="rent-amount" class="input" min="0" step="0.01" value="5" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea id="description" class="textarea" placeholder="Describe your item" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label for="image-url">Image URL (optional)</label>
+                  <input type="text" id="image-url" class="input" placeholder="https://...">
+                </div>
+                
+                <div class="form-actions">
+                  <button type="button" id="cancel-add-item" class="btn btn-secondary">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Add Item</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          
+          <div class="card filter-card">
+            <div class="card-header">
+              <div class="filter-header">
+                <h2 class="card-title">Filters</h2>
+                <button id="reset-filters" class="icon-btn">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="card-content">
+              <div class="form-group">
+                <label for="filter-category">Category</label>
+                <select id="filter-category" class="select">
+                  <option value="all" selected>All categories</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Tools">Tools</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Outdoors">Outdoors</option>
+                  <option value="Kitchen">Kitchen</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Books">Books</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label>Price Range</label>
+                <div class="range-slider">
+                  <div class="range-values">
+                    <span id="min-price">$0</span> - <span id="max-price">$100</span>
+                  </div>
+                  <input type="range" id="price-min" min="0" max="100" step="5" value="0" class="slider">
+                  <input type="range" id="price-max" min="0" max="100" step="5" value="100" class="slider">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="filter-condition">Condition</label>
+                <select id="filter-condition" class="select">
+                  <option value="any" selected>Any condition</option>
+                  <option value="Excellent">Excellent</option>
+                  <option value="Very Good">Very Good</option>
+                  <option value="Good">Good</option>
+                  <option value="Fair">Fair</option>
+                  <option value="Poor">Poor</option>
+                </select>
+              </div>
+              
+              <div class="form-group checkbox-group">
+                <input type="checkbox" id="available-only" checked>
+                <label for="available-only">Available items only</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="content">
+          <div class="items-header">
+            <h2>Available Items</h2>
+            <span id="items-count" class="badge outline">
+              <i class="fas fa-filter"></i> <span>0</span> items
+            </span>
+          </div>
+          
+          <div id="items-container" class="items-grid">
+            <!-- Items will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 HIVE Community Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/item-renting.js"></script>
+</body>
+</html>

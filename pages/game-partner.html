@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Partner Finder - HIVE</title>
+  <meta name="description" content="Find people to play your favorite games with">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/game-partner.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Required Lovable script tag -->
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</head>
+<body class="dark-mode">
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <a href="../index.html" class="logo">HIVE</a>
+        <div class="nav-links">
+          <a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+          <a href="roommate-finder.html" class="nav-link"><i class="fas fa-user-friends"></i> Roommate Finder</a>
+          <a href="common-cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Common Cart</a>
+          <a href="item-renting.html" class="nav-link"><i class="fas fa-box"></i> Item Renting</a>
+          <a href="auto-sharing.html" class="nav-link"><i class="fas fa-car"></i> Auto Sharing</a>
+          <a href="game-partner.html" class="nav-link active"><i class="fas fa-gamepad"></i> Game Partner</a>
+        </div>
+        <button id="theme-toggle" class="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="page-header">
+        <h1>Game Partner Finder</h1>
+        <p>Find people to play your favorite games with</p>
+      </section>
+
+      <div class="content-grid">
+        <div class="sidebar">
+          <div class="card filter-card">
+            <h2>Find Players</h2>
+            <div class="form-group">
+              <label for="game-search">Search Games</label>
+              <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" id="game-search" placeholder="Search game titles...">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="game-type">Game Type</label>
+              <select id="game-type">
+                <option value="all">All Types</option>
+                <option value="board">Board Games</option>
+                <option value="card">Card Games</option>
+                <option value="video">Video Games</option>
+                <option value="tabletop">Tabletop RPG</option>
+                <option value="outdoor">Outdoor Games</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="skill-level">Skill Level</label>
+              <select id="skill-level">
+                <option value="all">Any Skill Level</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="expert">Expert</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>Availability</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="availability" value="weekday-day"> Weekday Daytime
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="availability" value="weekday-evening"> Weekday Evening
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="availability" value="weekend-day"> Weekend Daytime
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="availability" value="weekend-evening"> Weekend Evening
+                </label>
+              </div>
+            </div>
+
+            <button id="apply-filters" class="btn btn-primary">Apply Filters</button>
+            <button id="reset-filters" class="btn btn-secondary">Reset Filters</button>
+          </div>
+          
+          <div class="card add-profile-card">
+            <h2>Your Profile</h2>
+            <button id="toggle-profile-form" class="btn btn-primary">Create/Edit Profile</button>
+            <div id="profile-form-container" style="display: none;">
+              <form id="game-profile-form">
+                <div class="form-group">
+                  <label for="profile-name">Your Name</label>
+                  <input type="text" id="profile-name" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="profile-games">Games You Play</label>
+                  <textarea id="profile-games" placeholder="Enter games separated by commas" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label for="profile-skill">Your Skill Level</label>
+                  <select id="profile-skill">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="expert">Expert</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label>When You're Available</label>
+                  <div class="checkbox-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="profile-availability" value="weekday-day"> Weekday Daytime
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="profile-availability" value="weekday-evening"> Weekday Evening
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="profile-availability" value="weekend-day"> Weekend Daytime
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="profile-availability" value="weekend-evening"> Weekend Evening
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="profile-bio">About You</label>
+                  <textarea id="profile-bio" placeholder="Tell others about your gaming preferences"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="main-content">
+          <div class="players-header">
+            <h2>Game Partners</h2>
+            <span id="player-count" class="count-badge">0 Players</span>
+          </div>
+          
+          <div id="players-container" class="players-grid">
+            <!-- Player cards will be displayed here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 HIVE Community Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container"></div>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/game-partner.js"></script>
+</body>
+</html>
